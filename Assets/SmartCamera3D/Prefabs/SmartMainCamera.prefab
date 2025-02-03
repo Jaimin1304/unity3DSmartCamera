@@ -151,15 +151,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modeToggleKey: 9
-  freeMovementSpeed: 30
+  freeMovementSpeed: 50
   freeLookSensitivity: 2.5
-  sprintMultiplier: 2
+  sprintMultiplier: 4
   orbitSpeed: 3
   zoomSpeedMultiplier: 0.05
   panSpeedMultiplier: 0.1
-  maxFocusDistance: 250
+  maxFocusDistance: 600
   minFocusDistance: 1
-  maxRayDistance: 1000
+  maxRayDistance: 2000
   raycastLayers:
     serializedVersion: 2
     m_Bits: 4294967295

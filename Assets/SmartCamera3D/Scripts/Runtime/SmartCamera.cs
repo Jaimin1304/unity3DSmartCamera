@@ -8,21 +8,37 @@ namespace SmartCamera
     /// 1. Free Mode: Similar to spectator mode in FPS games, allowing full 3D movement
     /// 2. Focus Mode: CAD-style orbiting around a focal point with zoom capability
     /// </summary>
+
+    // Define the camera modes enum
+    // We use the [Serializable] attribute to make it visible in the Unity Inspector
+    [Serializable]
+    public enum CamMode
+    {
+        Free,   // Free-flying camera mode
+        Focus   // Focus-based orbit mode
+    }
+
     public class SmartCamera : MonoBehaviour
     {
+        [Header("Default Camera Mode")]
+        [Tooltip("Select the camera mode to start with")]
+        [SerializeField]
+        private CamMode defaultCamMode = CamMode.Free;  // Set Free mode as default
+
+
         [Header("Camera Mode Settings")]
         [Tooltip("Key used to toggle between free and focus modes")]
         public KeyCode modeToggleKey = KeyCode.Tab;
 
         [Header("Free Mode Settings")]
         [Tooltip("Base movement speed in free mode")]
-        public float freeMovementSpeed = 40f;
+        public float freeMovementSpeed = 50f;
 
         [Tooltip("Mouse sensitivity for camera rotation")]
         public float freeLookSensitivity = 2.5f;
 
         [Tooltip("Movement speed multiplier when holding shift")]
-        public float sprintMultiplier = 3f;
+        public float sprintMultiplier = 4f;
 
         [Header("Focus Mode Settings")]
         [Tooltip("Orbit rotation speed around focus point")]
@@ -35,7 +51,7 @@ namespace SmartCamera
         public float panSpeedMultiplier = 0.1f;
 
         [Tooltip("Maximum distance allowed from focus point")]
-        public float maxFocusDistance = 250f;
+        public float maxFocusDistance = 600f;
 
         [Tooltip("Minimum distance allowed from focus point")]
         public float minFocusDistance = 1f;
@@ -47,7 +63,7 @@ namespace SmartCamera
         public LayerMask raycastLayers = -1; // Default to all layers
 
         // Internal camera state
-        private bool isInFocusMode = false;
+        private CamMode currCamMode;
         private Vector3 focusPoint;
         private float currFocusDist;
 
@@ -57,6 +73,8 @@ namespace SmartCamera
 
         private void Start()
         {
+            // Initialize the camera with the default mode
+            currCamMode = defaultCamMode;
             // Initialize camera angles from current transform
             Vector3 angles = transform.eulerAngles;
             rotationX = angles.y;
@@ -68,11 +86,12 @@ namespace SmartCamera
             // Handle mode switching
             if (Input.GetKeyDown(modeToggleKey))
             {
-                isInFocusMode = !isInFocusMode;
+                // toggle camera mode
+                currCamMode = (currCamMode == CamMode.Free) ? CamMode.Focus : CamMode.Free;
             }
 
             // Update camera based on current mode
-            if (isInFocusMode)
+            if (currCamMode == CamMode.Focus)
             {
                 UpdateFocusMode();
             }
