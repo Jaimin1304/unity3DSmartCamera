@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5286452266909822572}
   - component: {fileID: 8932167031941123694}
   m_Layer: 0
-  m_Name: SmartCamera3D
+  m_Name: SmartMainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

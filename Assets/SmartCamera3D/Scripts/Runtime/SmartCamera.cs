@@ -16,13 +16,13 @@ namespace SmartCamera
 
         [Header("Free Mode Settings")]
         [Tooltip("Base movement speed in free mode")]
-        public float freeMovementSpeed = 30f;
+        public float freeMovementSpeed = 40f;
 
         [Tooltip("Mouse sensitivity for camera rotation")]
         public float freeLookSensitivity = 2.5f;
 
         [Tooltip("Movement speed multiplier when holding shift")]
-        public float sprintMultiplier = 2f;
+        public float sprintMultiplier = 3f;
 
         [Header("Focus Mode Settings")]
         [Tooltip("Orbit rotation speed around focus point")]
@@ -147,6 +147,10 @@ namespace SmartCamera
                 // Orbit around focus point
                 transform.RotateAround(focusPoint, Vector3.up, mouseX);
                 transform.RotateAround(focusPoint, transform.right, -mouseY);
+                // sync rotation angles
+                Vector3 angles = transform.eulerAngles;
+                rotationX = angles.y;
+                rotationY = angles.x;
                 return;
             }
 
