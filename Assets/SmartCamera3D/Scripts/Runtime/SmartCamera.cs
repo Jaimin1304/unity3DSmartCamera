@@ -57,7 +57,7 @@ namespace SmartCamera
         public float minFocusDistance = 1f;
 
         [Tooltip("Maximum raycast distance for focus point detection")]
-        public float maxRayDistance = 1000f;
+        public float maxRayDistance = 2000f;
 
         [Tooltip("Layer mask for focus point raycast")]
         public LayerMask raycastLayers = -1; // Default to all layers

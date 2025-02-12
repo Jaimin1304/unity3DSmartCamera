@@ -1541,11 +1541,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8932167031941123694, guid: 60fbc6754619536439369c671213ca83, type: 3}
       propertyPath: sprintMultiplier
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8932167031941123694, guid: 60fbc6754619536439369c671213ca83, type: 3}
       propertyPath: freeMovementSpeed
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
