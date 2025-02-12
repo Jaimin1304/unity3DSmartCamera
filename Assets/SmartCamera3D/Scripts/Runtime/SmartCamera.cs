@@ -132,7 +132,7 @@ namespace SmartCamera
         private void UpdateFocusMode()
         {
             // Initialize focus point on right click
-            if (Input.GetMouseButtonDown(1) || Input.GetAxis("Mouse ScrollWheel") != 0)
+            if (Input.GetMouseButtonDown(1) || Input.GetAxis("Mouse ScrollWheel") != 0 || Input.GetMouseButton(2))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
